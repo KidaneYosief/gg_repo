@@ -400,7 +400,8 @@ echo -n 'myuser:mypassword' | openssl base64
 4.  git diff origin/branch_TCSESMIG-TCSESMIG-TCSESBATJOB-17 master  -- diff between two branches
 5.  git format-patch master --stdout > fix_empty_poster.patch  ## to create a patch 
 6.  git format-patch master file/s--stdout > fix_empty_poster.patch  ## to create a patch for a specific file
-7.  git apply --check ../tcses-patches/tcses-online.patch  ## to check if the apply will work
+7.  git apply --check < ../tcses-patches/tcses-online.patch  ## to check if the apply will work
+8.  git apply --check -R < ../tcses-patches/tcses-online.patch  ## to check if the apply will work in reverse way
 8.  git apply --stat fix_empty_poster.patch  ## to check what the changes will look like
 9.  git am --signoff < fix_empty_poster.patch ## to apply patches if you like them
 10. git apply -R ../tcses-patches/tcses-online.patch ## to apply patches if you like them in reverse way
