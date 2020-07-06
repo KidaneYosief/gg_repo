@@ -449,6 +449,14 @@ opt/runtime/hs1cseproduction/src/main/java/gov/tn/tcses/actions/CieUpdateNoncoop
 
 `sudo update-alternatives --display java`
 
+######################################################################
+
+    Installing  Jar commands
+	
+######################################################################
+		
+`yum installl java-devel`	
+
 		
 		
 		
