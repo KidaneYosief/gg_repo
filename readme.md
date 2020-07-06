@@ -455,7 +455,7 @@ opt/runtime/hs1cseproduction/src/main/java/gov/tn/tcses/actions/CieUpdateNoncoop
 	
 ######################################################################
 		
-`yum installl java-devel`	
+`yum install -y java-devel`	
 
 		
 		
