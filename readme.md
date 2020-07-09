@@ -457,6 +457,14 @@ opt/runtime/hs1cseproduction/src/main/java/gov/tn/tcses/actions/CieUpdateNoncoop
 		
 `yum install -y java-devel`	
 
+######################################################################
+
+    pinging  a server with separate port other than 22
+	
+######################################################################
+		
+`telnet ipaddress portnum`	
+
 		
 		
 		
