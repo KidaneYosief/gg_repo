@@ -465,6 +465,13 @@ opt/runtime/hs1cseproduction/src/main/java/gov/tn/tcses/actions/CieUpdateNoncoop
 		
 `telnet ipaddress portnum`	
 
+
+######################################################################
+
+    restoring deleted Branch
+	
+######################################################################
 		
+`git checkout -b <branch> <sha>`
 		
 		
