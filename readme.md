@@ -287,7 +287,7 @@ update two/one files in postgres  and update them under root user
 8. sudo vi  /app/nexus/bin/nexus.rc
 9. run_as_user="nexus"
 10. sudo vi /app/nexus/bin/nexus.vmoptions
-
+`
 -Xms2703m
 -Xmx2703m
 -XX:MaxDirectMemorySize=2703m
@@ -303,7 +303,8 @@ update two/one files in postgres  and update them under root user
 -Djava.util.logging.config.file=etc/karaf/java.util.logging.properties
 -Dkaraf.data=/nexus/nexus-data
 -Djava.io.tmpdir=../sonatype-work/nexus3/tmp
--Dkaraf.startLocalConsole=false
+-Dkaraf.startLocalConsole=false 
+`
 
 11. sudo vi /etc/systemd/system/nexus.service
 
