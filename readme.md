@@ -93,22 +93,14 @@ top and press 1
  
 		`tar -zxvf apache-maven-3.6.3-bin.tar.gz`
 		`mv apache-maven-3.6.3 /opt/maven`
+		`ln -s apache-maven-3.6.3 maven`
     
  3. `sudo vi /etc/profile.d/maven.sh` --- add --
  
         export M2_HOME=/opt/maven
-
- 
-
         export MAVEN_HOME=/opt/maven
-
- 
-
         export PATH=${M2_HOME}/bin:${PATH}
-
- 
-
- 4. sudo chmod +x /etc/profile.d/maven.sh
+ 4. sudo chmod 644 /etc/profile.d/maven.sh
  5. source /etc/profile.d/maven.sh
  
  
@@ -139,6 +131,7 @@ top and press 1
  
  scp the file into the respective server
   
+  there is also anothe link you can look https://access.redhat.com/discussions/917293
   
  #################################################################################
  
@@ -177,7 +170,7 @@ grep -iRl "https://tcses-dev.dhs.tn.gov/tcses" ./
  
 			firewall-cmd --list-all
 
-			firewall-cmd --zone=public --permanent --add-port=8080/tcp
+			firewall-cmd --zone=public --permanent --add-port=8081/tcp
 
 			firewall-cmd --reload
 
@@ -280,6 +273,62 @@ update two/one files in postgres  and update them under root user
 
 #################################################################################################################
 
+				INSTALLING Nexus IN LINUX 
+
+#################################################################################################################
+
+1. cd /opt && mkdir app
+2. sudo wget -O nexus.tar.gz https://download.sonatype.com/nexus/3/latest-unix.tar.gz
+3. sudo tar -xvf nexus.tar.gz
+4. sudo mv nexus-3* nexus
+5. sudo adduser nexus
+6. sudo chown -R nexus:nexus /app/nexus
+7. sudo chown -R nexus:nexus /app/sonatype-work
+8. sudo vi  /app/nexus/bin/nexus.rc
+9. run_as_user="nexus"
+10. sudo vi /app/nexus/bin/nexus.vmoptions
+
+-Xms2703m
+-Xmx2703m
+-XX:MaxDirectMemorySize=2703m
+-XX:+UnlockDiagnosticVMOptions
+-XX:+UnsyncloadClass
+-XX:+LogVMOutput
+-XX:LogFile=../sonatype-work/nexus3/log/jvm.log
+-XX:-OmitStackTraceInFastThrow
+-Djava.net.preferIPv4Stack=true
+-Dkaraf.home=.
+-Dkaraf.base=.
+-Dkaraf.etc=etc/karaf
+-Djava.util.logging.config.file=etc/karaf/java.util.logging.properties
+-Dkaraf.data=/nexus/nexus-data
+-Djava.io.tmpdir=../sonatype-work/nexus3/tmp
+-Dkaraf.startLocalConsole=false
+
+11. sudo vi /etc/systemd/system/nexus.service
+
+[Unit]
+Description=nexus service
+After=network.target
+
+[Service]
+Type=forking
+LimitNOFILE=65536
+User=nexus
+Group=nexus
+ExecStart=/app/nexus/bin/nexus start
+ExecStop=/app/nexus/bin/nexus stop
+User=nexus
+Restart=on-abort
+
+[Install]
+WantedBy=multi-user.target
+
+12. sudo chkconfig nexus on
+13. sudo systemctl start nexus
+
+#################################################################################################################
+
 				INSTALLING JENKINS IN LINUX using YUM
 
 #################################################################################################################
@@ -288,6 +337,8 @@ update two/one files in postgres  and update them under root user
 2. sudo rpm --import https://pkg.jenkins.io/redhat-stable/jenkins.io.key
 3. sudo yum install jenkins
 4. service jenkins start
+5. systemctl status jenkins
+6. sudo systemctl enable jenkins
 
 #################################################################################################################
 
@@ -457,21 +508,40 @@ opt/runtime/hs1cseproduction/src/main/java/gov/tn/tcses/actions/CieUpdateNoncoop
 		
 `yum install -y java-devel`	
 
+
 ######################################################################
 
-    pinging  a server with separate port other than 22
+    pinging  Jar commands
 	
 ######################################################################
 		
 `telnet ipaddress portnum`	
 
 
+
 ######################################################################
 
-    restoring deleted Branch
+    finding file with pattern and delete them 
 	
 ######################################################################
 		
-`git checkout -b <branch> <sha>`
+`find /var/log -name "*.log" -type f -mtime +30 -exec rm -f {} \;`
+
+
+######################################################################
+
+   finding all files under specific folder and delete them all files
+	
+######################################################################
 		
+`find /opt/backup -type f -mtime +30 -exec rm -f {} \;`
+
+######################################################################
+
+   Find and delete all the older folders keeping some numbers of the folder
+	
+######################################################################
+		
+`ls -dt kid* | tail -n +3 | xargs rm -rf`
+
 		
