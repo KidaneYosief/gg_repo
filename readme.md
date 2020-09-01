@@ -282,11 +282,12 @@ update two/one files in postgres  and update them under root user
 3. sudo tar -xvf nexus.tar.gz
 4. sudo mv nexus-3* nexus
 5. sudo adduser nexus
-6. sudo chown -R nexus:nexus /app/nexus
-7. sudo chown -R nexus:nexus /app/sonatype-work
-8. sudo vi  /app/nexus/bin/nexus.rc
+6. sudo chown -R nexus:nexus nexus
+7. sudo chown -R nexus:nexus sonatype-work
+8. sudo vi  nexus/bin/nexus.rc
 9. run_as_user="nexus"
-10. sudo vi /app/nexus/bin/nexus.vmoptions
+10. sudo vi nexus/bin/nexus.vmoptions
+
 `
 -Xms2703m
 -Xmx2703m
