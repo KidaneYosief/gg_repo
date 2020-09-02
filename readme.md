@@ -285,8 +285,8 @@ update two/one files in postgres  and update them under root user
 6. sudo chown -R nexus:nexus nexus
 7. sudo chown -R nexus:nexus sonatype-work
 8. sudo vi  nexus/bin/nexus.rc
-9. run_as_user="nexus"
-10. sudo vi nexus/bin/nexus.vmoptions
+	run_as_user="nexus"
+9. sudo vi nexus/bin/nexus.vmoptions
 
 `
 -Xms2703m
@@ -307,7 +307,7 @@ update two/one files in postgres  and update them under root user
 -Dkaraf.startLocalConsole=false 
 `
 
-11. sudo vi /etc/systemd/system/nexus.service
+10. sudo vi /etc/systemd/system/nexus.service
 
 [Unit]
 Description=nexus service
@@ -318,16 +318,17 @@ Type=forking
 LimitNOFILE=65536
 User=nexus
 Group=nexus
-ExecStart=/app/nexus/bin/nexus start
-ExecStop=/app/nexus/bin/nexus stop
+ExecStart=/opt/app/nexus/bin/nexus start
+ExecStop=/opt/app/nexus/bin/nexus stop
 User=nexus
 Restart=on-abort
 
 [Install]
 WantedBy=multi-user.target
 
-12. sudo chkconfig nexus on
-13. sudo systemctl start nexus
+11. sudo chkconfig nexus on
+12. sudo systemctl start nexus
+13. If port number change is needed  -- ./sonatype-work/nexus3/etc/nexus.properties
 
 #################################################################################################################
 
