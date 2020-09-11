@@ -328,7 +328,7 @@ WantedBy=multi-user.target
 
 11. sudo chkconfig nexus on
 12. sudo systemctl start nexus
-13. If port number change is needed  -- ./sonatype-work/nexus3/etc/nexus.properties
+13. If port number change is needed  -- ./nexus/etc/nexus-default.properties
 
 #################################################################################################################
 
@@ -539,6 +539,8 @@ opt/runtime/hs1cseproduction/src/main/java/gov/tn/tcses/actions/CieUpdateNoncoop
 		
 `find /opt/backup -type f -mtime +30 -exec rm -f {} \;`
 
+
+
 ######################################################################
 
    Find and delete all the older folders keeping some numbers of the folder
@@ -547,4 +549,16 @@ opt/runtime/hs1cseproduction/src/main/java/gov/tn/tcses/actions/CieUpdateNoncoop
 		
 `ls -dt kid* | tail -n +3 | xargs rm -rf`
 
+
+
+######################################################################
 		
+		adding sef-signed cert to jenkins
+
+######################################################################
+
+1. keytool -genkey -alias jenkins-ssl-cert -keyalg RSA -keystore .ssl/.keystore -validity 365
+2. update the jenkins file under - /etc/sysconfig
+		Change the JENKINS_PORT value to “-1” – You need to do this to ensure your CI server is no longer accessed through http.
+		Change the JENKINS_HTTPS_PORT value to “443” or any other port which is not taken.
+		Change the JENKINS_ARGS value to “–httpsKeyStore=$JENKINS_HOME/.ssl/.keystore –httpsKeyStorePassword=kidhen02624”.
