@@ -178,6 +178,7 @@ grep -iRl "https://tcses-dev.dhs.tn.gov/tcses" ./
 			lsof -i :8080
 			sudo lsof -i -P -n | grep LISTEN
 
+			netstat -an | grep 8081
  #################################################################################
  
                    dealing with postgres
@@ -557,8 +558,31 @@ opt/runtime/hs1cseproduction/src/main/java/gov/tn/tcses/actions/CieUpdateNoncoop
 
 ######################################################################
 
-1. keytool -genkey -alias jenkins-ssl-cert -keyalg RSA -keystore .ssl/.keystore -validity 365
-2. update the jenkins file under - /etc/sysconfig
-		Change the JENKINS_PORT value to “-1” – You need to do this to ensure your CI server is no longer accessed through http.
-		Change the JENKINS_HTTPS_PORT value to “443” or any other port which is not taken.
-		Change the JENKINS_ARGS value to “–httpsKeyStore=$JENKINS_HOME/.ssl/.keystore –httpsKeyStorePassword=kidhen02624”.
+1. keytool -genkey -keyalg RSA -alias self-cert -keystore jenkins-keystore.jks -validity 365
+2. update jenkins file in /etc/sysconfig/jenkins , update 
+		`JENKINS_PORT="8080"  to  JENKINS_PORT="-1"
+		`JENKINS_HTTPS_PORT="" to JENKINS_HTTPS_PORT="8443"
+		`JENKINS_HTTPS_KEYSTORE=""  to JENKINS_HTTPS_KEYSTORE="$JENKINS_HOME/jenkins-keystore.jks"
+		`JENKINS_HTTPS_KEYSTORE_PASSWORD=""  to JENKINS_HTTPS_KEYSTORE_PASSWORD="PASSWORD"
+Restart the service	
+		
+######################################################################
+		
+		adding sef-signed cert to jenkins
+
+######################################################################		
+1. under /opt/app/nexus/etc/ssl run this command and create nexus key -- ( under nexus user )
+	`keytool -genkeypair -keystore keystore.jks -storepass PASSWORD -keypass PASSWORD -alias jetty -keyalg RSA -keysize 2048 -validity 5000`
+2. under /opt/app/nexus/etc/jetty  update the file jetty-https.xml and
+	add the following tag line -   <Set name="certAlias">jetty</Set> , Before the line containing <Set name="KeyStorePath"> 
+	Update the folliwing tag lines with password - The password is the one you have to give accurately
+		`<Set name="KeyStorePassword">PASSWORD</Set>
+		`<Set name="KeyManagerPassword">PASSWORD</Set>
+		`<Set name="TrustStorePassword">PASSWORD</Set>
+3. under /opt/app/sonatype-work/nexus3/etc - update the nexus.properties
+	uncomment the ` nexus-args=`
+	update the port number using the command `application-port-ssl=8085`
+	
+Now restart the service and check from your browser
+
+		
