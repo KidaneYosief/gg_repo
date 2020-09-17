@@ -122,16 +122,12 @@ top and press 1
                     Installing Chrome into Linux
 					
  #################################################################################
- 
- 1. Follow this link -  https://www.cyberciti.biz/faq/howto-install-google-chrome-on-redhat-rhel-fedora-centos-linux/
- 
- if the wget is not able to download, 
- 
- it can be done by downloading the rpm file locally and 
- 
- scp the file into the respective server
-  
-  there is also anothe link you can look https://access.redhat.com/discussions/917293
+ go to the link http://dist.control.lth.se/public/CentOS-7/x86_64/google.x86_64/ and select the version you like -
+ For example:-
+	```
+	wget http://dist.control.lth.se/public/CentOS-7/x86_64/google.x86_64/google-chrome-beta-80.0.3987.53-1.x86_64.rpm
+	yum install -y google-chrome-beta-80.0.3987.53-1.x86_64.rpm
+	```
   
  #################################################################################
  
