@@ -622,7 +622,7 @@ WantedBy=multi-user.targeties
 
 ######################################################################	
 
-`Encrypt adn decrypt with openssl`
+**Encrypt adn decrypt with openssl**
 
 to Encrypt
 		
@@ -632,7 +632,7 @@ To Decrypt
 		
 		openssl base64 -d <<< encryptedString
 
-`Encrypt and Decrypt using python`
+**Encrypt and Decrypt using python**
 
 To Encrypt
 
