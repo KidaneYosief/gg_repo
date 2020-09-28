@@ -613,4 +613,32 @@ Restart=always
 [Install]
 WantedBy=multi-user.targeties
 ```
+	
+
+
+######################################################################
+		
+		Encrypt and Decrypt
+
+######################################################################	
+
+`Encrypt adn decrypt with openssl`
+
+to Encrypt
+		
+		openssl base64 -e <<< rawString
+
+To Decrypt
+		
+		openssl base64 -d <<< encryptedString
+
+`Encrypt and Decrypt using python`
+
+To Encrypt
+
+		echo rawString | python -m base64
+
+To Decrypt
+
+		echo EncryptedString | python -m base64 -d
 		
