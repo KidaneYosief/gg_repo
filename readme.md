@@ -641,4 +641,16 @@ To Encrypt
 To Decrypt
 
 		echo EncryptedString | python -m base64 -d
+
+
+######################################################################
 		
+		openning port in linux
+
+######################################################################
+
+`/etc/sysconfig/iptables`
+
+`-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT`
+
+`/etc/init.d/iptables restart`
