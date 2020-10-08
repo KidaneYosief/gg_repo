@@ -101,7 +101,7 @@ top and press 1
         export MAVEN_HOME=/opt/maven
         export PATH=${M2_HOME}/bin:${PATH}
  4. sudo chmod 644 /etc/profile.d/maven.sh
- 5. source /etc/profile.d/maven.sh
+ 5. source /etc/profile
  
  
  ######################################################################
@@ -567,7 +567,7 @@ Restart the service
 		
 ######################################################################
 		
-		adding sef-signed cert to jenkins
+		adding sef-signed cert to Nexus
 
 ######################################################################		
 1. under /opt/app/nexus/etc/ssl run this command and create nexus key -- ( under nexus user )
@@ -654,3 +654,12 @@ To Decrypt
 `-A RH-Firewall-1-INPUT -m state --state NEW -m tcp -p tcp --dport 80 -j ACCEPT`
 
 `/etc/init.d/iptables restart`
+
+
+######################################################################
+		
+		Creating cert and key
+
+######################################################################
+
+openssl req -new -newkey rsa:2048 -nodes -out certfilename.csr -keyout kyfilename.key -subj "/C=US/ST=NM/L=Santa Fe/O=NMHSD/OU=CSES/CN=CSRAWSDEVOPS01"
