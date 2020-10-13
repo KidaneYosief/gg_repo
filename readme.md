@@ -325,7 +325,7 @@ WantedBy=multi-user.target
 
 11. sudo chkconfig nexus on
 12. sudo systemctl start nexus
-13. If port number change is needed  -- ./nexus/etc/nexus-default.properties
+13. If port number change is needed  -- sonatype-work/nexus3/etc/nexus.properties
 
 ######################################################################
 
