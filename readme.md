@@ -97,8 +97,8 @@ top and press 1
     
  3. `sudo vi /etc/profile.d/maven.sh` --- add --
  
-        export M2_HOME=/opt/maven
-        export MAVEN_HOME=/opt/maven
+        export M2_HOME=/opt/apps/maven
+        export MAVEN_HOME=/opt/apps/maven
         export PATH=${M2_HOME}/bin:${PATH}
  4. sudo chmod 644 /etc/profile.d/maven.sh
  5. source /etc/profile
@@ -663,3 +663,37 @@ To Decrypt
 ######################################################################
 
 openssl req -new -newkey rsa:2048 -nodes -out certfilename.csr -keyout kyfilename.key -subj "/C=US/ST=NM/L=Santa Fe/O=NMHSD/OU=CSES/CN=CSRAWSDEVOPS01"
+
+
+
+
+######################################################################
+		
+		Jprofiler agent enabling
+
+######################################################################
+
+
+1. download tar.gz file	
+	wget https://download-gcdn.ej-technologies.com/jprofiler/jprofiler_linux_11_1_4.tar.gz
+2. untar the downloaded 
+	 tar -zxvf jprofiler_linux_11_1_4.tar.gz
+3. start - or enabling jprofiler using the right service ( process) user - example
+	sudo -u jenkins ./jpenable
+you can choose the default options but make sure to open the port you choose
+
+
+
+######################################################################
+		
+		Creating new Maven project
+
+######################################################################
+
+to create a simple dummy maven project dump this code
+
+```
+mvn archetype:generate -DgroupId=org.sonatype.mavenbook \
+-DartifactId=simple \
+-Dpackage=org.sonatype.mavenbook \
+-Dversion=1.0-SNAPSHOT
