@@ -461,6 +461,23 @@ echo -n 'myuser:mypassword' | openssl base64
 10. git apply -R ../tcses-patches/tcses-online.patch ## to apply patches if you like them in reverse way
 
  
+ 
+ ######################################################################
+
+   Git tag
+	
+######################################################################
+
+  && git push origin --tags
+
+
+renaming tag  - ` git tag newTag oldTag
+deleting local tag  - ` git tag -d tagtobeDeleted
+deleting remote tag - ` git push origin :refs/tags/TargetTag
+creating new tag and commit - ` git tag  -a v1.0.0 -m "release-1.0.0 on 10-25-2020"
+pushing tag - `git push origin --tags
+ 
+ 
 
 ######################################################################
 
