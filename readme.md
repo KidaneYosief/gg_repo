@@ -703,7 +703,7 @@ you can choose the default options but make sure to open the port you choose
 
 ######################################################################
 		
-		Creating new Maven project
+		Creating new Maven project and maven commands
 
 ######################################################################
 
@@ -714,3 +714,8 @@ mvn archetype:generate -DgroupId=org.sonatype.mavenbook \
 -DartifactId=simple \
 -Dpackage=org.sonatype.mavenbook \
 -Dversion=1.0-SNAPSHOT
+
+`To clean cache and force update dependencies in `
+
+`dependency:purge-local-repository clean install`
+
