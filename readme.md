@@ -714,8 +714,9 @@ mvn archetype:generate -DgroupId=org.sonatype.mavenbook \
 -DartifactId=simple \
 -Dpackage=org.sonatype.mavenbook \
 -Dversion=1.0-SNAPSHOT
+```
 
 `To clean cache and force update dependencies in `
 
-`dependency:purge-local-repository clean install`
+`dependency:purge-local-repository clean install
 
