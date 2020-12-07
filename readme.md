@@ -721,3 +721,59 @@ mvn archetype:generate -DgroupId=org.sonatype.mavenbook \
 
 `dependency:purge-local-repository clean install `
 
+
+
+######################################################################
+		
+		working with self-sign certs
+
+######################################################################
+
+determine if keystore file exist
+
+keytool -list -v -keystore path_to_keystore_file
+
+
+
+to export the keystore
+
+keytool -export -alias teiid -keystore server.keystore -rfc -file public.cert
+
+
+to import a cert
+
+keytool -importcert -file pathToCertFile -alias aliasName -keystore $JAVA_HOME/jre/lib/security/cacerts
+
+or
+
+Add to trust store
+
+keytool -import -alias teiid -file public.cert -storetype JKS -keystore server.truststore
+
+
+
+Generating csr with SAN to get it signed
+// old-one
+openssl req -new -newkey rsa:4096 -nodes -outcertsname.csr -keyoutcertsname.key -subj "/C=US/ST=NM/L=Santa Fe/O=NMHSD/OU=CSES/CN=cses-devopstools.nmhsd.lcl"
+
+// New-one
+openssl req -new -newkey rsa:4096 -nodes -outcertsname.csr -keyoutcertsname.key -config req.conf
+
+
+
+10/19/2020
+
+https://support.sonatype.com/hc/en-us/articles/213465768-SSL-Certificate-Guide
+
+1. openssl pkcs12 -export -in certsname.cer -inkey certsname.key -outcertsname.p12 -name nexus -CAfile ITDSFAADCS01-CA.cer -caname root
+
+password == nmh5d2020
+
+2. keytool -importkeystore -deststorepass nmh5d2020 -destkeypass nmh5d2020 -destkeystore keystore.jks \
+        -srckeystorecertsname.p12 -srcstoretype PKCS12 -srcstorepass nmh5d2020 \
+        -alias nexus
+		
+		
+Locally we had to add the cert into the java certs keystore 
+
+keytool -importcert -file nexus.cer -alias nexus -keystore C:\Program Files\Java\jdk1.8.0_251\jre\lib\security\cacerts
