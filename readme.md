@@ -777,3 +777,14 @@ password == nmh5d2020
 Locally we had to add the cert into the java certs keystore 
 
 keytool -importcert -file nexus.cer -alias nexus -keystore C:\Program Files\Java\jdk1.8.0_251\jre\lib\security\cacerts
+
+
+
+######################################################################
+		
+		working with self-sign certs
+
+######################################################################
+
+
+`echo 1 > /proc/sys/vm/drop_caches`   
