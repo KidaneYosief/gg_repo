@@ -782,9 +782,19 @@ keytool -importcert -file nexus.cer -alias nexus -keystore C:\Program Files\Java
 
 ######################################################################
 		
-		working with self-sign certs
+		Cleaning up cache
 
 ######################################################################
 
 
 `echo 1 > /proc/sys/vm/drop_caches`   
+
+
+######################################################################
+		
+		installing nodejs
+
+######################################################################
+
+`curl -sL https://rpm.nodesource.com/setup_10.x | sudo bash -`
+`sudo yum install nodejs`
