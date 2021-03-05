@@ -234,11 +234,12 @@ GRANT ALL PRIVILEGES ON DATABASE jira_db TO jira_user;
 1. sudo yum groupinstall "Development Tools"
 2. sudo yum install gettext-devel openssl-devel perl-CPAN perl-devel zlib-devel, 
 3. sudo yum install zlib-devel   ( sometime this migh be enough instead of step 2)
-3. tar -zxf git.tar.gz
-4. cd git-*
-5. make configure
-6. ./configure --prefix=/usr/local
-7. sudo make install
+4. wget https://github.com/git/git/archive/v2.1.2.tar.gz -O git.tar.gz
+5. tar -zxf git.tar.gz
+6. cd git-*
+7. make configure
+8. ./configure --prefix=/usr/local
+9. sudo make install
 
 
 ######################################################################
