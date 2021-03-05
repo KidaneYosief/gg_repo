@@ -227,7 +227,7 @@ GRANT ALL PRIVILEGES ON DATABASE jira_db TO jira_user;
 
 ######################################################################
 
-							Installing git and java
+							Installing git
 
 ######################################################################
 
