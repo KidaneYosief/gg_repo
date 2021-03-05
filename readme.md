@@ -244,7 +244,7 @@ GRANT ALL PRIVILEGES ON DATABASE jira_db TO jira_user;
 OR
 
 1. sudo yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.7-1.x86_64.rpm
-2. sudo yum install git
+2. sudo yum install -y git
 
 
 ######################################################################
