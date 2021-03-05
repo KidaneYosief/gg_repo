@@ -166,7 +166,7 @@ grep -iRl "any character/content" ./
  
 			firewall-cmd --list-all
 
-			firewall-cmd --zone=public --permanent --add-port=8081/tcp
+			firewall-cmd --zone=public --permanent --add-port=7990/tcp
 
 			firewall-cmd --reload
 
@@ -240,6 +240,11 @@ GRANT ALL PRIVILEGES ON DATABASE jira_db TO jira_user;
 7. make configure
 8. ./configure --prefix=/usr/local
 9. sudo make install
+
+OR
+
+1. sudo yum -y install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.7-1.x86_64.rpm
+2. sudo yum install git
 
 
 ######################################################################
